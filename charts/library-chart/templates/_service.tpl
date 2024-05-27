@@ -18,6 +18,10 @@ spec:
       targetPort: {{ default .Values.networking.service.port .Values.networking.service.targetPort }}
       protocol: TCP
       name: main
+    - port: {{ .Values.networking.service.port }}
+      targetPort: 3000
+      protocol: TCP
+      name: main
     {{ if .Values.networking.user }}
     {{ if .Values.networking.user.enabled }}
     - port: {{ .Values.networking.user.port }}

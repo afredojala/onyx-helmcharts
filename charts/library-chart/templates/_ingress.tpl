@@ -63,6 +63,16 @@ spec:
     {{- end }}
 {{- end }}
   rules:
+    - host: {{ printf "3000.%s" .Values.ingress.hostname }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port: 
+                  number: 3000
     - host: {{ .Values.ingress.hostname | quote }}
       http:
         paths:
@@ -73,16 +83,6 @@ spec:
                 name: {{ $fullName }}
                 port: 
                   number: {{ $svcPort }}
-    - host: {{ printf "3000-%s" .Values.ingress.hostname }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ $fullName }}
-                port: 
-                  number: 3000
 {{- end }}
 {{- end }}
 
