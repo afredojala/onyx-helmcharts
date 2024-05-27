@@ -22,6 +22,10 @@ spec:
       targetPort: 3000
       protocol: TCP
       name: dagster
+    - port: 9009
+      targetPort: 9009
+      protocol: TCP
+      name: rill
     {{ if .Values.networking.user }}
     {{ if .Values.networking.user.enabled }}
     - port: {{ .Values.networking.user.port }}

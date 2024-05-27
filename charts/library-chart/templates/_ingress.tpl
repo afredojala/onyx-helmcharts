@@ -57,13 +57,14 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.hostname | quote }}
-        - {{ printf "3000-%s" .Values.ingress.hostname }}
+        - {{ printf "%s-3000" .Values.ingress.hostname }}
+        - {{ printf "%s-9009" .Values.ingress.hostname }}
     {{- if .Values.ingress.useCertManager }}
       secretName: tls-cert-{{ include "library-chart.fullname" . }}
     {{- end }}
 {{- end }}
   rules:
-    - host: {{ printf "3000-%s" .Values.ingress.hostname }}
+    - host: {{ printf "%s-3000" .Values.ingress.hostname }}
       http:
         paths:
           - path: /
@@ -73,6 +74,16 @@ spec:
                 name: {{ $fullName }}
                 port: 
                   number: 3000
+    - host: {{ printf "%s-9009" .Values.ingress.hostname }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port: 
+                  number: 9009
     - host: {{ .Values.ingress.hostname | quote }}
       http:
         paths:
