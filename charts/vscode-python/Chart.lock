@@ -1,6 +1,6 @@
 dependencies:
 - name: library-chart
-  repository: https://inseefrlab.github.io/helm-charts-interactive-services
+  repository: https://afredojala.github.io/onyx-helmcharts
   version: 1.5.21
-digest: sha256:68e1c81877670c9cafd3087602ecfb75da7bb4245de947ec9a73812dd819cf60
-generated: "2024-04-30T16:53:26.64398563Z"
+digest: sha256:dddad9f0d9e43b7f23b84e05187c2ce9143016a6d118526e793c17770d820a1b
+generated: "2024-05-27T19:08:42.926894981+02:00"
