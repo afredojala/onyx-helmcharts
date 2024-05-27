@@ -1,1 +1,1 @@
-{{ include "vscode-python.ingress" . }}
+{{ include "library-chart.ingress" . }}

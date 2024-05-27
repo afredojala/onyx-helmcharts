@@ -1,7 +1,7 @@
 apiVersion: v2
 dependencies:
 - name: library-chart
-  repository: https://inseefrlab.github.io/helm-charts-interactive-services
+  repository: https://afredojala.github.io/onyx-helmcharts
   version: 1.5.21
 description: The Visual Studio Code IDE with Python, Julia, and a collection of standard
   data science packages.
