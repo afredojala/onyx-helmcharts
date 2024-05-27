@@ -1,0 +1,6 @@
+dependencies:
+- name: library-chart
+  repository: https://inseefrlab.github.io/helm-charts-interactive-services
+  version: 1.5.21
+digest: sha256:68e1c81877670c9cafd3087602ecfb75da7bb4245de947ec9a73812dd819cf60
+generated: "2024-02-28T23:26:41.22433515+01:00"

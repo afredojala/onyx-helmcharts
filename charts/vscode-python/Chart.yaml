@@ -1,0 +1,14 @@
+apiVersion: v2
+dependencies:
+- name: library-chart
+  repository: https://inseefrlab.github.io/helm-charts-interactive-services
+  version: 1.5.21
+description: The Visual Studio Code IDE with Python, Julia, and a collection of standard
+  data science packages.
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/vscode.png
+keywords:
+- VSCode
+- Python
+name: vscode-python
+type: application
+version: 1.11.32

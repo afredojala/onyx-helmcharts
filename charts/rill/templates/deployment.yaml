@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dataexplorer.fullname" . }}
+  labels:
+    {{- include "dataexplorer.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "dataexplorer.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "dataexplorer.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "dataexplorer.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: [rill, start, /home/rill/project]
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: KUBERNETES_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            {{- if .Values.s3.enabled }}
+          envFrom:
+            - secretRef:
+                name: {{ include "library-chart.secretNameS3" . }}
+            {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: temp-storage
+              mountPath: "/home/rill/project"
+            - name: rill-project
+              mountPath: "/home/rill/project/rill.yaml"
+              subPath: "rill.yaml"
+              readOnly: False
+            - name: minio-source
+              mountPath: "/home/rill/project/sources/minio.yaml"
+              subPath: "minio.yaml"
+              readOnly: False
+
+      volumes:
+        - name: rill-project
+          configMap:
+            name: {{ include "dataexplorer.fullname" . }}
+            items:
+              - key: rill.yaml
+                path: rill.yaml
+        - name: minio-source
+          configMap:
+            name: {{ include "dataexplorer.fullname" . }}
+            items:
+              - key: minio.yaml
+                path: minio.yaml
+        - name: temp-storage
+          emptyDir: {}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

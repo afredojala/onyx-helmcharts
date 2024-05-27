@@ -1,0 +1,51 @@
+apiVersion: v1
+entries:
+  dataexplorer:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-02T13:11:02.828425485+01:00"
+    dependencies:
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.21
+    description: A Helm chart for Kubernetes
+    digest: 5213ed15a2b74ad59902b766fa15565f2a75a60a9306ccfeeda221c2cb1bfca8
+    name: dataexplorer
+    type: application
+    urls:
+    - dataexplorer-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-02T13:11:02.823697033+01:00"
+    dependencies:
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.21
+    description: A Helm chart for Kubernetes
+    digest: bd5ffb1ac30cc173ad01515b405feed9e9ba0668b45c08953cf28bb329cf1464
+    name: dataexplorer
+    type: application
+    urls:
+    - dataexplorer-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-02T13:11:02.822461739+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 2ec0835bdbe80024e9340e64986cc90e07b105961d191db89bd107543b364f88
+    name: dataexplorer
+    type: application
+    urls:
+    - dataexplorer-0.1.0.tgz
+    version: 0.1.0
+  library-chart:
+  - apiVersion: v2
+    created: "2024-03-02T13:11:02.82916192+01:00"
+    digest: 1d9e2a012199a058332876c6a9616fdfe49f8bf47d4fca85f28c9ca296b02711
+    name: library-chart
+    type: library
+    urls:
+    - charts/library-chart-1.5.21.tgz
+    version: 1.5.21
+generated: "2024-03-02T13:11:02.821417294+01:00"
