@@ -5,8 +5,8 @@ Returns true if the ingressClassname field is supported
 Usage:
 {{ include "common.ingress.supportsIngressClassname" . }}
 */}}
-{{- define "library-chart.ingress.supportsIngressClassname" -}}
-{{- if semverCompare "<1.18-0" (include "library-chart.capabilities.kubeVersion" .) -}}
+{{- define "vscode-python.ingress.supportsIngressClassname" -}}
+{{- if semverCompare "<1.18-0" (include "vscode-python.capabilities.kubeVersion" .) -}}
 {{- print "false" -}}
 {{- else -}}
 {{- print "true" -}}
@@ -14,7 +14,7 @@ Usage:
 {{- end -}}
 
 {{/* Ingress annotations */}}
-{{- define "library-chart.ingress.annotations" -}}
+{{- define "vscode-python.ingress.annotations" -}}
 {{- with .Values.ingress.annotations }}
     {{- toYaml . }}
 {{- end }}
@@ -28,7 +28,7 @@ acme.cert-manager.io/http01-ingress-class: {{ .Values.ingress.ingressClassName }
 {{- end }}
 
 {{/* Ingress hostname */}}
-{{- define "library-chart.ingress.hostname" -}}
+{{- define "vscode-python.ingress.hostname" -}}
 {{- if .Values.ingress.generate }}
 {{- printf "%s" .Values.ingress.userHostname }}
 {{- else }}
@@ -37,20 +37,23 @@ acme.cert-manager.io/http01-ingress-class: {{ .Values.ingress.ingressClassName }
 {{- end }}
 
 {{/* Template to generate a standard Ingress */}}
-{{- define "library-chart.ingress" -}}
+{{- define "vscode-python.ingress" -}}
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "library-chart.fullname" . -}}
+{{- $fullName := include "vscode-python.fullname" . -}}
 {{- $svcPort := .Values.networking.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}-ui
   labels:
-    {{- include "library-chart.labels" . | nindent 4 }}
+    {{- include "vscode-python
+  .labels" . | nindent 4 }}
   annotations:
-    {{- include "library-chart.ingress.annotations" . | nindent 4 }}
+    {{- include "vscode-python
+  .ingress.annotations" . | nindent 4 }}
 spec:
-  {{- if and .Values.ingress.ingressClassName (eq "true" (include "library-chart.ingress.supportsIngressClassname" .)) }}
+  {{- if and .Values.ingress.ingressClassName (eq "true" (include "vscode-python
+.ingress.supportsIngressClassname" .)) }}
   ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
   {{- end }}
 {{- if .Values.ingress.tls }}
@@ -59,7 +62,8 @@ spec:
         - {{ .Values.ingress.hostname | quote }}
         - 3000-{{ .Values.ingress.hostname | quote }}
     {{- if .Values.ingress.useCertManager }}
-      secretName: tls-cert-{{ include "library-chart.fullname" . }}
+      secretName: tls-cert-{{ include "vscode-python
+    .fullname" . }}
     {{- end }}
 {{- end }}
   rules:
@@ -87,21 +91,24 @@ spec:
 {{- end }}
 
 {{/* Template to generate a custom Ingress */}}
-{{- define "library-chart.ingressUser" -}}
+{{- define "vscode-python.ingressUser" -}}
 {{- if .Values.ingress.enabled -}}
 {{ if .Values.networking.user.enabled }}
-{{- $fullName := include "library-chart.fullname" . -}}
+{{- $fullName := include "vscode-python.fullname" . -}}
 {{- $svcPort := .Values.networking.user.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}-user
   labels:
-    {{- include "library-chart.labels" . | nindent 4 }}
+    {{- include "vscode-python
+  .labels" . | nindent 4 }}
   annotations:
-    {{- include "library-chart.ingress.annotations" . | nindent 4 }}
+    {{- include "vscode-python
+  .ingress.annotations" . | nindent 4 }}
 spec:
-  {{- if and .Values.ingress.ingressClassName (eq "true" (include "library-chart.ingress.supportsIngressClassname" .)) }}
+  {{- if and .Values.ingress.ingressClassName (eq "true" (include "vscode-python
+.ingress.supportsIngressClassname" .)) }}
   ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
   {{- end }}
 {{- if .Values.ingress.tls }}
@@ -109,7 +116,8 @@ spec:
     - hosts:
         - {{ .Values.ingress.userHostname | quote }}
     {{- if .Values.ingress.useCertManager }}
-      secretName: tls-cert-{{ include "library-chart.fullname" . }}
+      secretName: tls-cert-{{ include "vscode-python
+    .fullname" . }}
     {{- end }}
 {{- end }}
   rules:
@@ -128,21 +136,24 @@ spec:
 {{- end }}
 
 {{/* Template to generate an Ingress for the Spark UI */}}
-{{- define "library-chart.ingressSpark" -}}
+{{- define "vscode-python.ingressSpark" -}}
 {{- if .Values.ingress.enabled -}}
 {{- if .Values.spark.sparkui -}}
-{{- $fullName := include "library-chart.fullname" . -}}
+{{- $fullName := include "vscode-python.fullname" . -}}
 {{- $svcPort := .Values.networking.sparkui.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}-sparkui
   labels:
-    {{- include "library-chart.labels" . | nindent 4 }}
+    {{- include "vscode-python
+  .labels" . | nindent 4 }}
   annotations:
-    {{- include "library-chart.ingress.annotations" . | nindent 4 }}
+    {{- include "vscode-python
+  .ingress.annotations" . | nindent 4 }}
 spec:
-  {{- if and .Values.ingress.ingressClassName (eq "true" (include "library-chart.ingress.supportsIngressClassname" .)) }}
+  {{- if and .Values.ingress.ingressClassName (eq "true" (include "vscode-python
+.ingress.supportsIngressClassname" .)) }}
   ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
   {{- end }}
 {{- if .Values.ingress.tls }}
@@ -150,7 +161,8 @@ spec:
     - hosts:
         - {{ .Values.ingress.sparkHostname | quote }}
     {{- if .Values.ingress.useCertManager }}
-      secretName: tls-cert-{{ include "library-chart.fullname" . }}
+      secretName: tls-cert-{{ include "vscode-python
+    .fullname" . }}
     {{- end }}
 {{- end }}
   rules:
