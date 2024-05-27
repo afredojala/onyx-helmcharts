@@ -80,7 +80,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: dagster-{{ $fullName }}
+                name: {{ $fullName }}
                 port: 
                   number: 3000
 {{- end }}
