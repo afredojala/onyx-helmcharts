@@ -21,7 +21,7 @@ spec:
     - port: 3000
       targetPort: 3000
       protocol: TCP
-      name: main
+      name: dagster
     {{ if .Values.networking.user }}
     {{ if .Values.networking.user.enabled }}
     - port: {{ .Values.networking.user.port }}
