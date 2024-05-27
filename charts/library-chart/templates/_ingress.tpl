@@ -63,7 +63,7 @@ spec:
     {{- end }}
 {{- end }}
   rules:
-    - host: {{ printf "3000.%s" .Values.ingress.hostname }}
+    - host: {{ printf "3000-%s" .Values.ingress.hostname }}
       http:
         paths:
           - path: /
