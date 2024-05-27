@@ -57,7 +57,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.hostname | quote }}
-        - {{ cat "3000-" .Values.ingress.hostname | quote }}
+        - {{ printf "3000-%s" .Values.ingress.hostname }}
     {{- if .Values.ingress.useCertManager }}
       secretName: tls-cert-{{ include "library-chart.fullname" . }}
     {{- end }}
@@ -73,7 +73,7 @@ spec:
                 name: {{ $fullName }}
                 port: 
                   number: {{ $svcPort }}
-    - host: {{ cat "3000-" .Values.ingress.hostname | quote }}
+    - host: {{ printf "3000-%s" .Values.ingress.hostname }}
       http:
         paths:
           - path: /
