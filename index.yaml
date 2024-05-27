@@ -3,7 +3,7 @@ entries:
   dataexplorer:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-27T20:29:31.39029255+02:00"
+    created: "2024-05-27T20:39:33.082626113+02:00"
     dependencies:
     - name: library-chart
       repository: https://inseefrlab.github.io/helm-charts-interactive-services
@@ -17,7 +17,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-27T20:29:31.395274595+02:00"
+    created: "2024-05-27T20:39:33.087247698+02:00"
     dependencies:
     - name: library-chart
       repository: https://inseefrlab.github.io/helm-charts-interactive-services
@@ -31,8 +31,8 @@ entries:
     version: 0.1.2
   library-chart:
   - apiVersion: v2
-    created: "2024-05-27T20:29:31.390656598+02:00"
-    digest: 5aa5bf5d90d16d08b6a32e216ce12d319ccf57de22f821a3fb2943aec0195403
+    created: "2024-05-27T20:39:33.08299277+02:00"
+    digest: 437d2e68f306c86d2b2641ad909994d9424f2e8511fd041c43b6e9df560fe89e
     name: library-chart
     type: library
     urls:
@@ -40,14 +40,14 @@ entries:
     version: 1.5.21
   vscode-python:
   - apiVersion: v2
-    created: "2024-05-27T20:29:31.39286968+02:00"
+    created: "2024-05-27T20:39:33.085092594+02:00"
     dependencies:
     - name: library-chart
       repository: https://afredojala.github.io/onyx-helmcharts
       version: 1.5.21
     description: The Visual Studio Code IDE with Python, Julia, and a collection of
       standard data science packages.
-    digest: e6b0ae68d7e01a420ecff2a154e054c7e308e666475bd1c78222726abb7ac437
+    digest: 4c7dd04134a56a58df323273be4dba44d969354bbe95bd9486dbbb6a77ab7b29
     icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/vscode.png
     keywords:
     - VSCode
@@ -58,7 +58,7 @@ entries:
     - https://afredojala.github.io/onyx-helmcharts/vscode-python-1.11.33.tgz
     version: 1.11.33
   - apiVersion: v2
-    created: "2024-05-27T20:29:31.391731718+02:00"
+    created: "2024-05-27T20:39:33.084069515+02:00"
     dependencies:
     - name: library-chart
       repository: https://inseefrlab.github.io/helm-charts-interactive-services
@@ -76,7 +76,7 @@ entries:
     - https://afredojala.github.io/onyx-helmcharts/vscode-python-1.11.32.tgz
     version: 1.11.32
   - apiVersion: v2
-    created: "2024-05-27T20:29:31.396486159+02:00"
+    created: "2024-05-27T20:39:33.08868872+02:00"
     dependencies:
     - name: library-chart
       repository: https://inseefrlab.github.io/helm-charts-interactive-services
@@ -93,4 +93,4 @@ entries:
     urls:
     - https://afredojala.github.io/onyx-helmcharts/charts/vscode-python-1.11.32.tgz
     version: 1.11.32
-generated: "2024-05-27T20:29:31.387105549+02:00"
+generated: "2024-05-27T20:39:33.079517966+02:00"
